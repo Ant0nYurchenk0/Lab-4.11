@@ -228,7 +228,10 @@ public class Parser {
 
   private void pushString() {
     var lexeme = new Lexem(){{
-      Notation = currentLexem;
+      var endSymbol = "'";
+      if (currentState == State.DoubleQuotedString)
+        endSymbol="\"";
+      Notation = currentLexem + endSymbol;
       LexemType = LexemType.String;
     }};
     lexems.add(lexeme);
